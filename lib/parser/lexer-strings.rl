@@ -429,7 +429,14 @@ class Parser::LexerStrings
           break
         end
 
-        @escape += codepoint.chr(Encoding::UTF_8)
+        begin
+          # It's not trivial to check if it is actually valid, rely on Ruby telling us about it
+          @escape += codepoint.chr(Encoding::UTF_8)
+        rescue RangeError
+          diagnostic :error, :unicode_point_invalid, nil,
+              range(codepoint_s, codepoint_s + codepoint_str.length)
+          break
+        end
         codepoint_s += codepoint_str.length
       end
     end

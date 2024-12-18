@@ -5755,6 +5755,14 @@ class TestParser < Minitest::Test
       SINCE_1_9)
   end
 
+  def test_codepoint_invalid
+    assert_diagnoses(
+      [:error, :unicode_point_invalid],
+      %q{"\u{D800}"},
+      %q{    ~~~~ location},
+      SINCE_1_9)
+  end
+
   def test_on_error
     assert_diagnoses(
       [:error, :unexpected_token, { :token => 'tIDENTIFIER' }],

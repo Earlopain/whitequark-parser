@@ -11,6 +11,7 @@ module Parser
   MESSAGES = {
     # Lexer errors
     :unicode_point_too_large  => 'invalid Unicode codepoint (too large)',
+    :unicode_point_invalid    => 'invalid Unicode codepoint',
     :invalid_escape           => 'invalid escape character syntax',
     :incomplete_escape        => 'incomplete character syntax',
     :invalid_hex_escape       => 'invalid hex escape',
